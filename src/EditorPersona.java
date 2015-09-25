@@ -12,7 +12,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
-import java.io.FileNotFoundException;
 import java.awt.event.ActionEvent;
 
 /**
@@ -22,7 +21,7 @@ import java.awt.event.ActionEvent;
  */
 public class EditorPersona extends JFrame {
 
-	
+
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textFieldNome;
@@ -71,7 +70,6 @@ public class EditorPersona extends JFrame {
 	}
 
 
-
 	/**
 	 * Metodo che restituisce il testo inserito nel jtextfield corrispondente all'età.
 	 * @return textFieldEta
@@ -81,8 +79,6 @@ public class EditorPersona extends JFrame {
 	}
 
 
-
-	
 	/**
 	 * Costruttore del frame EditorPersona.
 	 * @param miaRubrica Oggetto di tipo Rubrica.
@@ -189,7 +185,7 @@ public class EditorPersona extends JFrame {
 							if (nome.equals(p.getNome()) && cognome.equals(p.getCognome())) {
 								t=false;
 							}	
-						
+
 						//Se il tag=-1, significa che devo "Aggiungere" un contatto
 						if (tag==-1) {
 							//Se t=false, errore
@@ -198,48 +194,40 @@ public class EditorPersona extends JFrame {
 										JOptionPane.INFORMATION_MESSAGE);
 								setVisible(false);
 							} 
-							
+
 							else {
 								miaRubrica.creaContatto(nome,cognome,indirizzo,telefono,eta);
-								GestoreFile.aggiungiFile(nome,cognome,indirizzo, telefono,eta);
+								gestioneDatabase.aggiungiContattoDB(nome, cognome, indirizzo, telefono, eta);
 							}
 
 						}
-						
+
 						//Se il tag è diverso da -1, allora si tratta di un'operazione di "Modifica" di un contatto
 						if (tag!=-1) {
-							Persona p = miaRubrica.getElencoContatti().get(tag);
-							//Controllo che non esistano altri contatti (a parte il contatto che voglio modificare) che non abbiano lo stesso
-							//nome e cognome di quelli inseriti
-							for (Persona pers: miaRubrica.getElencoContatti())
-								if (!pers.equals(p))
-									if (nome.equals(pers.getNome()) && cognome.equals(pers.getCognome())) 
-										t=false;
-							if (t) {
+
 							//Salvo i vecchi valori di nome e cognome del file
 							String n = miaRubrica.getElencoContatti().get(tag).getNome();
 							String c =miaRubrica.getElencoContatti().get(tag).getCognome();
-							//elimino il file
-							GestoreFile.eliminaFile(n, c);
-							//modifico il contatto nell'array
-							miaRubrica.modificaContatto(tag,nome, cognome, indirizzo, telefono,eta);
-							//Genero un nuovo file
-							GestoreFile.aggiungiFile(nome, cognome, indirizzo, telefono, eta);
-							}
-							else {
+							//Controllo che non esistano altri contatti (a parte il contatto che voglio modificare) che non abbiano lo stesso
+							//nome e cognome di quelli inseriti
+							if (t==false &&(!nome.equals(n)||!cognome.equals(c))) {
 								JOptionPane.showMessageDialog(null,"Il contatto è già presente nella rubrica!", "Errore",
 										JOptionPane.INFORMATION_MESSAGE);
 								setVisible(false);
+							} else {							
+								//aggiorno il database
+								gestioneDatabase.modificaContattoDB(nome, cognome, indirizzo, telefono, eta, n, c);
+								//modifico il contatto nell'array
+								miaRubrica.modificaContatto(tag,nome, cognome, indirizzo, telefono,eta);
+
 							}
-							}
-					
+
+						}
+
 
 					} catch(NumberFormatException exc){
 						JOptionPane.showMessageDialog(null,"Inserire un numero nel campo Età!", "Errore",
 								JOptionPane.INFORMATION_MESSAGE);
-					} catch (FileNotFoundException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
 					} 
 
 				} 

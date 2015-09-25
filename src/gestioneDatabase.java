@@ -17,7 +17,7 @@ public class gestioneDatabase {
 		Connection conn = null;
 		Statement stmt = null;
 		try{
-			//STEP 2: Register JDBC driver
+			//Registrazione driver JDBC
 			Class.forName("com.mysql.jdbc.Driver");
 
 			conn = DriverManager.getConnection(DB_URL,USER,PASS);
@@ -73,5 +73,145 @@ public class gestioneDatabase {
 		}
 
 	}
+
+	public static void aggiungiContattoDB (String n, String c, String i , String t, int et) {
+
+		Connection conn = null;
+		Statement stmt = null;
+		try{
+			//Registrazione driver JDBC
+			Class.forName("com.mysql.jdbc.Driver");
+
+			conn = DriverManager.getConnection(DB_URL,USER,PASS);
+
+			// Esecuzione della query
+			stmt = conn.createStatement();
+
+			String sql;
+			sql = "INSERT INTO contatti (nome,cognome,indirizzo,telefono,eta)VALUES('"+n+"','"+c+"','"+i+"','"+t+"','"+et+"');";
+			int success=stmt.executeUpdate(sql);
+			
+			System.out.println(success);
+
+			
+			stmt.close();
+			conn.close();
+		}catch(SQLException se){
+
+			se.printStackTrace();
+		}catch(Exception e){
+
+			e.printStackTrace();
+		}finally{
+
+			try{
+				if(stmt!=null)
+					stmt.close();
+			}catch(SQLException se2){
+			}
+			try{
+				if(conn!=null)
+					conn.close();
+			}catch(SQLException se){
+				se.printStackTrace();
+			}
+		}
+
+	}
+	
+
+
+	public static void modificaContattoDB (String n, String c, String i, String t, int eta, String oldn, String oldc) {
+
+		Connection conn = null;
+		Statement stmt = null;
+		try{
+			//Registrazione driver JDBC
+			Class.forName("com.mysql.jdbc.Driver");
+
+			conn = DriverManager.getConnection(DB_URL,USER,PASS);
+
+			// Esecuzione della query
+			stmt = conn.createStatement();
+
+			String sql;
+			sql = "UPDATE contatti SET 	nome = '"+n+"',cognome = '"+c+"',indirizzo = '"+i+"',telefono = '"+t+"',eta = '"+eta+"' WHERE nome = '"+oldn+"' AND cognome = '"+oldc+"';";
+			int success=stmt.executeUpdate(sql);
+			
+			System.out.println(success);
+
+			
+			stmt.close();
+			conn.close();
+		}catch(SQLException se){
+
+			se.printStackTrace();
+		}catch(Exception e){
+
+			e.printStackTrace();
+		}finally{
+
+			try{
+				if(stmt!=null)
+					stmt.close();
+			}catch(SQLException se2){
+			}
+			try{
+				if(conn!=null)
+					conn.close();
+			}catch(SQLException se){
+				se.printStackTrace();
+			}
+		}
+
+	}
+
+	
+	public static void eliminaContattoDB (String n, String c) {
+
+		Connection conn = null;
+		Statement stmt = null;
+		try{
+			//Registrazione driver JDBC
+			Class.forName("com.mysql.jdbc.Driver");
+
+			conn = DriverManager.getConnection(DB_URL,USER,PASS);
+
+			// Esecuzione della query
+			stmt = conn.createStatement();
+
+			String sql;
+			sql = "DELETE FROM contatti WHERE nome = '"+n+"' and cognome = '"+c+"';";
+			int success=stmt.executeUpdate(sql);
+			
+			System.out.println(success);
+
+			
+			stmt.close();
+			conn.close();
+		}catch(SQLException se){
+
+			se.printStackTrace();
+		}catch(Exception e){
+
+			e.printStackTrace();
+		}finally{
+
+			try{
+				if(stmt!=null)
+					stmt.close();
+			}catch(SQLException se2){
+			}
+			try{
+				if(conn!=null)
+					conn.close();
+			}catch(SQLException se){
+				se.printStackTrace();
+			}
+		}
+
+	}
+
+
 }
 

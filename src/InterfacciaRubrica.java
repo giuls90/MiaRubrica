@@ -26,16 +26,13 @@ import java.awt.event.ActionEvent;
  */
 public class InterfacciaRubrica extends JFrame {
 
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private final JScrollPane scrollPaneTabellaContatti = new JScrollPane();
 	private JTable tabellaContatti;
 	private Rubrica miaRubrica;
 	private InterfacciaRubrica home;
-
 
 
 	/**
@@ -145,21 +142,11 @@ public class InterfacciaRubrica extends JFrame {
 					//Se è positiva
 					if (conferma == JOptionPane.YES_OPTION) {
 
-
-						try {
-							//Elimina il file corrispondente alla persona, e l'oggetto Persona dell'arraylist
-							GestoreFile.eliminaFile(nome, cognome);
-							miaRubrica.eliminaContatto(i);
-
-						} catch (FileNotFoundException e1) {							
-							e1.printStackTrace();
-						}
-
+						//Elimina il file corrispondente alla persona, e l'oggetto Persona dell'arraylist
+						gestioneDatabase.eliminaContattoDB(nome, cognome);
+						miaRubrica.eliminaContatto(i);
 						//Aggiorna la Jtable
 						aggiornaTabella();
-
-
-
 					} 
 				}
 
