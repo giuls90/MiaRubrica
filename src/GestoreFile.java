@@ -15,12 +15,7 @@ import java.util.Scanner;
  */
 public class GestoreFile {
 
-
-
-
-
 	private final static String PATH = "informazioni/";
-
 
 
 	/**

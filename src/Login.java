@@ -13,6 +13,7 @@ import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 /**
@@ -23,14 +24,14 @@ import java.awt.event.ActionEvent;
  */
 public class Login extends JFrame {
 
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textFieldUsername;
 	private JPasswordField passwordField;
-
+	//Memorizza l'elenco degli utenti
+	ArrayList <Utente> listaUtenti = new ArrayList <Utente>();
+	
 	/**
 	 * Launch the application.
 	 */
@@ -99,14 +100,19 @@ public class Login extends JFrame {
 
 				// Memorizza il valore di input dei campi username e password
 				String user = textFieldUsername.getText();
-				char[] pwd = passwordField.getPassword();
+				char[] p = passwordField.getPassword();
 
 				//Converte l'array di caratteri in Stringa
-				String s = new String (pwd);
+				String pwd = new String (p);
 
-				//Controllo se i valori inseriti corrispondono allo username e password della classe Utente
+				//Controllo nel database se i valori inseriti corrispondono allo username e alla password di qualche utente.
 				//In caso positivo, viene mandata in esecuzione l'interfaccia rubrica
-				if(Utente.getUsername().equals(user)&&Utente.getPassword().equals(s))
+				gestioneDatabase.leggiUtentiDaDB(listaUtenti);
+				boolean tag=false;
+				for(Utente u: listaUtenti)
+					if(u.getUsername().equals(user)&&u.getPassword().equals(pwd))
+						tag=true;
+				if (tag==true)
 					EventQueue.invokeLater(new Runnable() {
 						public void run() {
 							try {
@@ -123,7 +129,6 @@ public class Login extends JFrame {
 				else {
 					JOptionPane.showMessageDialog(null, "Username o password inseriti errati!", "Errore", JOptionPane.INFORMATION_MESSAGE);
 				}
-
 
 			}
 		});

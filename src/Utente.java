@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 /**
  * Classe che definisce un utente.
@@ -6,14 +7,26 @@
  */
 public class Utente {
 
-	private final static String username = "user";
-	private final static String password = "miaRubrica" ;
+	private String username;
+	private String password;
 
+	
+/**
+ * Costruttore della classe Utente.
+ * @param username Username dell'oggetto Utente.
+ * @param password Password dell'oggetto Utente.
+ */
+public Utente (String username, String password){
+	this.username=username;
+	this.password=password;
+	
+}
+	
 	/**
 	 * Metodo che restituisce lo username di un Utente.
 	 * @return username
 	 */
-	public static String getUsername() {
+	public String getUsername() {
 		return username;
 	}
 
@@ -21,7 +34,7 @@ public class Utente {
 	 * Metodo che restituisce la password di un Utente.
 	 * @return password
 	 */
-	public static String getPassword() {
+	public String getPassword() {
 		return password;
 	}
 

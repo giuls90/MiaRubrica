@@ -14,7 +14,6 @@ import java.awt.Font;
 import java.awt.Color;
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
@@ -160,7 +159,7 @@ public class InterfacciaRubrica extends JFrame {
 		//Carica tutto il contenuto informativo dal DB
 
 		//Aggiunge i contatti all'arraylist elencoContatti
-		gestioneDatabase.leggiDaDB(miaRubrica);
+		gestioneDatabase.leggiRubricaDaDB(miaRubrica);
 		//Aggiorna la JTable, mostrando gli elementi dell'arraylist elencoContatti
 		aggiornaTabella();
 

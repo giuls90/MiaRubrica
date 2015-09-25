@@ -11,15 +11,10 @@ import java.util.ArrayList;
  */
 public class Rubrica {
 
-
-
-
 	/**
 	 * Arraylist che conterrà tutti i contatti della Rubrica.
 	 */
 	ArrayList <Persona> elencoContatti = new ArrayList <Persona>();
-
-
 
 	/**
 	 * Metodo che crea un oggetto Persona e lo aggiunge all'elenco dei contatti, implementato da un'arraylist.
