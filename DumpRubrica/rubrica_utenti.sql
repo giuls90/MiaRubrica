@@ -18,30 +18,27 @@ USE `rubrica`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `contatti`
+-- Table structure for table `utenti`
 --
 
-DROP TABLE IF EXISTS `contatti`;
+DROP TABLE IF EXISTS `utenti`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `contatti` (
-  `nome` varchar(45) NOT NULL,
-  `cognome` varchar(45) NOT NULL,
-  `indirizzo` varchar(45) NOT NULL,
-  `telefono` varchar(45) NOT NULL,
-  `eta` int(11) DEFAULT NULL,
-  PRIMARY KEY (`nome`,`cognome`)
+CREATE TABLE `utenti` (
+  `username` varchar(45) NOT NULL,
+  `password` varchar(45) NOT NULL,
+  PRIMARY KEY (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `contatti`
+-- Dumping data for table `utenti`
 --
 
-LOCK TABLES `contatti` WRITE;
-/*!40000 ALTER TABLE `contatti` DISABLE KEYS */;
-INSERT INTO `contatti` VALUES ('Babbo','Natale','via del Polo Nord','0000111',100),('Giulia','Santini','xyxyxyxyxyxy','067857483',25),('Steve','Jobs','xxxxxxxyyyzzz','083784728',55);
-/*!40000 ALTER TABLE `contatti` ENABLE KEYS */;
+LOCK TABLES `utenti` WRITE;
+/*!40000 ALTER TABLE `utenti` DISABLE KEYS */;
+INSERT INTO `utenti` VALUES ('user','miaRubrica'),('user1','miaRubrica'),('user2','miaRubrica');
+/*!40000 ALTER TABLE `utenti` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -53,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-09-25 16:41:37
+-- Dump completed on 2015-09-25 18:39:52
