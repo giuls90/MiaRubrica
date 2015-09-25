@@ -170,16 +170,12 @@ public class InterfacciaRubrica extends JFrame {
 		btnElimina.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		toolBarBottoniHome.add(btnElimina);
 
-		//Carica tutto il contenuto informativo della cartella Informazioni.
-		try {
-			//Aggiunge i contatti all'arraylist elencoContatti
-			GestoreFile.leggiDaFile2(miaRubrica);
-			//Aggiorna la JTable, mostrando gli elementi dell'arraylist elencoContatti
-			aggiornaTabella();
-		} catch (FileNotFoundException e) {
+		//Carica tutto il contenuto informativo dal DB
 
-			e.printStackTrace();
-		}
+		//Aggiunge i contatti all'arraylist elencoContatti
+		gestioneDatabase.leggiDaDB(miaRubrica);
+		//Aggiorna la JTable, mostrando gli elementi dell'arraylist elencoContatti
+		aggiornaTabella();
 
 	}
 
