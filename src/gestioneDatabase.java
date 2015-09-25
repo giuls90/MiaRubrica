@@ -2,6 +2,11 @@
 
 import java.sql.*;
 import java.util.ArrayList;
+/**
+ * Classe che gestisce la persistenza dell'applicazione MiaRubrica.
+ * @author Giulia Santini
+ *
+ */
 public class gestioneDatabase {
 
 	// Nome del driver JDBC e URL del database
@@ -13,7 +18,10 @@ public class gestioneDatabase {
 	static final String PASS = "marley";
 
 
-
+	/**
+	 * Metodo che si occupa di caricare il contenuto della tabella Contatti del database nell'arraylist ElencoContatti.
+	 * @param miaRubrica Oggetto di tipo Rubrica
+	 */
 	public static void leggiRubricaDaDB (Rubrica miaRubrica) {
 		Connection conn = null;
 		Statement stmt = null;
@@ -69,6 +77,10 @@ public class gestioneDatabase {
 	}
 
 
+	/**
+	 * Metodo che si occupa di caricare il contenuto della tabella utenti del database nell'arraylist lista Utenti.
+	 * @param listaUtenti Arraylist
+	 */
 	public static void leggiUtentiDaDB (ArrayList <Utente> listaUtenti) {
 		Connection conn = null;
 		Statement stmt = null;
@@ -125,6 +137,14 @@ public class gestioneDatabase {
 
 
 
+	/**
+	 * Metodo che si occupa di aggiungere un contatto alla tabella Contatti del DB.
+	 * @param n Nome del contatto da aggiungere
+	 * @param c Cognome del contatto da aggiungere
+	 * @param i Indirizzo del contatto da aggiungere
+	 * @param t Telefono del contatto da aggiungere
+	 * @param et Età del contatto da aggiungere
+	 */
 	public static void aggiungiContattoDB (String n, String c, String i , String t, int et) {
 
 		Connection conn = null;
@@ -172,6 +192,16 @@ public class gestioneDatabase {
 
 
 
+	/**
+	 * Metodo che si occupa di modificare un determinato contatto nella tabella Contatti del DB.
+	 * @param n Nuovo nome	
+	 * @param c Nuovo cognome
+	 * @param i Nuovo indirizzo
+	 * @param t Nuovo telefono
+	 * @param eta Nuova età
+	 * @param oldn Vecchio nome
+	 * @param oldc Vecchio cognome
+	 */
 	public static void modificaContattoDB (String n, String c, String i, String t, int eta, String oldn, String oldc) {
 
 		Connection conn = null;
@@ -218,6 +248,11 @@ public class gestioneDatabase {
 	}
 
 
+	/**
+	 * Metodo che si occupa di eliminare un determinato contatto.
+	 * @param n Nome del contatto che si vuole eliminare
+	 * @param c Cognome del contatto che si vuole eliminare
+	 */
 	public static void eliminaContattoDB (String n, String c) {
 
 		Connection conn = null;
