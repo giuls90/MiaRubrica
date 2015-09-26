@@ -2,6 +2,8 @@
 
 import java.sql.*;
 import java.util.ArrayList;
+
+import javax.swing.JOptionPane;
 /**
  * Classe che gestisce la persistenza dell'applicazione MiaRubrica.
  * @author Giulia Santini
@@ -9,14 +11,14 @@ import java.util.ArrayList;
  */
 public class gestioneDatabase {
 
-	// Nome del driver JDBC e URL del database
+	// Nome del driver JDBC
 	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";  
-	static final String DB_URL = "jdbc:mysql://localhost/rubrica";
+
 
 	// Credenziali del DB
-	static final String USER = "root";
-	static final String PASS = "marley";
-
+	private static String USER;
+	private static String PASS;
+	private static String DB_URL;
 
 	/**
 	 * Metodo che si occupa di caricare il contenuto della tabella Contatti del database nell'arraylist ElencoContatti.
@@ -84,6 +86,7 @@ public class gestioneDatabase {
 	public static void leggiUtentiDaDB (ArrayList <Utente> listaUtenti) {
 		Connection conn = null;
 		Statement stmt = null;
+
 		try{
 			//Registrazione driver JDBC
 			Class.forName("com.mysql.jdbc.Driver");
@@ -111,6 +114,7 @@ public class gestioneDatabase {
 			rs.close();
 			stmt.close();
 			conn.close();
+
 		}catch(SQLException se){
 
 			se.printStackTrace();
@@ -129,6 +133,7 @@ public class gestioneDatabase {
 					conn.close();
 			}catch(SQLException se){
 				se.printStackTrace();
+
 			}
 		}
 
@@ -297,6 +302,33 @@ public class gestioneDatabase {
 		}
 
 	}
+
+	/**
+	 * Metodo che setta il valore dello username del database server
+	 * @param uSER
+	 */
+	public static void setUSER(String uSER) {
+		USER = uSER;
+	}
+
+
+	/**
+	 * Metodo che setta il valore della password del database server
+	 * @param pASS
+	 */
+	public static void setPASS(String pASS) {
+		PASS = pASS;
+	}
+
+
+	/**
+	 * Metodo che setta l'IP e il nome del database a cui collegarsi
+	 * @param dB_URL
+	 */
+	public static void setDB_URL(String dB_URL) {
+		DB_URL = dB_URL;
+	}
+
 
 
 }

@@ -1,0 +1,24 @@
+
+************************************************************************************************************************
+************************************************** Istruzioni***********************************************************
+************************************************************************************************************************
+
+
+-1 Importare il dump del db "DumpRubrica" su un database di tipo Mysql
+
+-2 Aprire il file di configurazione "config.properties" e settare le credenziali di connessione al db
+
+-3 In particolare inserire:  (nell'inserimento dei parametri, omettere le parentesi <,>)
+		dbuser=<nome_utente_db>
+		dbpassword=<password_utente_db>
+		dbporta=<porta_db>
+		dbIP=<ip_db>
+		
+-4 Lanciare l'applicazione, tramite il jar "Rubrica.jar"
+
+-5 Per effettuare il login, inserire le credenziali di uno degli utenti del database
+	La lista utenti, è la seguente:
+		username=user,  password=miaRubrica;
+		username=user1, password=miaRubrica;
+		username=user2, password=miaRubrica
+		

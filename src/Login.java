@@ -32,21 +32,6 @@ public class Login extends JFrame {
 	//Memorizza l'elenco degli utenti
 	ArrayList <Utente> listaUtenti = new ArrayList <Utente>();
 	
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Login frame = new Login();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Costruttore della classe Login.
